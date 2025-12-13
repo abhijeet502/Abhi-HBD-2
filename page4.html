@@ -2,187 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Birthday Playlist 🎶</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Final Message 💌</title>
 
 <style>
-  html,body{
-    height:100%;
-    margin:0;
-    font-family: "Inter", system-ui, Arial;
-    background: linear-gradient(180deg,#ffd6e3,#ffeaf2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#5a2a3c;
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
-  .wrap{
-    width:100%;
-    max-width:440px;
-    padding:24px;
+  body {
+    background: url("assets/bg-final.png") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card{
-    background: rgba(255,255,255,0.65);
-    backdrop-filter: blur(16px);
-    border-radius:26px;
-    padding:28px 24px 30px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.16);
-    position:relative;
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.7);
   }
 
-  .card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:26px;
-    border:2px solid rgba(255,255,255,0.45);
-    pointer-events:none;
+  .card {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 26px;
+    padding: 28px 22px;
+    box-shadow: 0 35px 80px rgba(0,0,0,0.15);
+    animation: fadeUp 1s ease;
   }
 
-  h2{
-    margin:0;
-    font-size:24px;
-    font-weight:900;
-    text-align:center;
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .subtitle{
-    text-align:center;
-    font-size:14px;
-    margin-top:8px;
-    opacity:0.9;
+  h2 {
+    text-align: center;
+    color: #ff7aa2;
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 14px;
   }
 
-  .flowers{
-    text-align:center;
-    font-size:20px;
-    margin:10px 0 18px;
+  .letter {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5b4a52;
+    min-height: 220px;
+    white-space: pre-wrap;
   }
 
-  .playlist{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    margin-top:10px;
+  .signature {
+    margin-top: 16px;
+    font-weight: 800;
+    color: #ff7aa2;
+    text-align: right;
   }
 
-  .song{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:14px 16px;
-    border-radius:18px;
-    background: rgba(255,255,255,0.6);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  .buttons {
+    margin-top: 26px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .play{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background: linear-gradient(180deg,#ff8fab,#ffb3c6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:16px;
-    cursor:pointer;
-    flex-shrink:0;
-    box-shadow: 0 6px 16px rgba(255,120,160,0.35);
+  .btn {
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 14px;
   }
 
-  .song-info{
-    flex:1;
+  .btn.replay {
+    background: #fff;
+    border: 1px solid #ffd6e3;
+    color: #ff7aa2;
   }
 
-  .song-title{
-    font-weight:800;
-    font-size:15px;
+  .btn.share {
+    background: linear-gradient(90deg,#ff8fb1,#ffb6c1);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(255,120,160,0.35);
   }
 
-  .song-desc{
-    font-size:13px;
-    opacity:0.85;
-    margin-top:4px;
-  }
-
-  .note{
-    margin-top:20px;
-    font-size:14px;
-    text-align:center;
-    opacity:0.9;
-  }
-
-  .controls{
-    margin-top:24px;
-    display:flex;
-    justify-content:center;
-  }
-
-  .btn{
-    border:none;
-    padding:14px 26px;
-    border-radius:999px;
-    font-size:15px;
-    font-weight:800;
-    cursor:pointer;
-    background: linear-gradient(180deg,#ff6f91,#ff9ab3);
-    color:#fff;
-    box-shadow: 0 14px 30px rgba(255,105,135,0.35);
-  }
-
-  .btn:active{
+  .btn:active {
     transform: scale(0.97);
   }
 </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="card">
 
-      <h2>A Soft Playlist 🎧</h2>
-      <div class="subtitle">Songs that feel gentle, warm, and familiar</div>
-      <div class="flowers">🌷🌸🌷</div>
+<div class="overlay"></div>
 
-      <div class="playlist">
-        <div class="song">
-          <div class="play">▶</div>
-          <div class="song-info">
-            <div class="song-title">Night Changes</div>
-            <div class="song-desc">For growth, memories, and quiet moments ✨</div>
-          </div>
-        </div>
+<div class="card">
+  <h2>For You 🌷</h2>
 
-        <div class="song">
-          <div class="play">▶</div>
-          <div class="song-info">
-            <div class="song-title">Memories</div>
-            <div class="song-desc">For laughs, late talks, and nostalgia 💭</div>
-          </div>
-        </div>
+  <div id="text" class="letter"></div>
 
-        <div class="song">
-          <div class="play">▶</div>
-          <div class="song-info">
-            <div class="song-title">Never Grow Up</div>
-            <div class="song-desc">For staying soft in a loud world 🌸</div>
-          </div>
-        </div>
-      </div>
+  <div id="sign" class="signature"></div>
 
-      <div class="note">
-        Play them slowly — they’re meant to be felt, not rushed 💗
-      </div>
-
-      <div class="controls">
-        <button class="btn" onclick="location.href='page5.html'">
-          One Last Page 🌙
-        </button>
-      </div>
-
-    </div>
+  <div class="buttons">
+    <button class="btn replay" onclick="replay()">Replay 🌸</button>
+    <button class="btn share" onclick="share()">Share 🎈</button>
   </div>
+</div>
+
+<script>
+  const message = 
+`Happy Birthday 🎂✨
+
+I hope today feels gentle, warm, and a little brighter than usual 🌷  
+This small space was made just to remind you that you matter —  
+your smile, your presence, and the little moments you bring along.
+
+May this year give you calm days, happy surprises,  
+soft music moments, and reasons to smile even on ordinary days 💖  
+You deserve comfort, joy, and all the good energy the world can offer.
+
+Take this as a quiet birthday hug —  
+no rush, no expectations, just good wishes floating your way ☁️🎀`;
+
+  const textEl = document.getElementById("text");
+  const signEl = document.getElementById("sign");
+
+  let i = 0;
+
+  function typeText(){
+    if(i < message.length){
+      textEl.textContent += message.charAt(i);
+      i++;
+      setTimeout(typeText, 28);
+    } else {
+      signEl.textContent = "— Abhi 🌸";
+    }
+  }
+
+  typeText();
+
+  function replay(){
+    location.href = "index.html";
+  }
+
+  function share(){
+    if(navigator.share){
+      navigator.share({
+        title: "A Cute Birthday Page 🎀",
+        url: location.href
+      });
+    } else {
+      navigator.clipboard.writeText(location.href);
+      alert("Link copied 🎉");
+    }
+  }
+</script>
+
 </body>
 </html>
