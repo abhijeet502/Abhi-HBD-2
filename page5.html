@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>A Gentle Ending 🌷</title>
+
+<style>
+  html,body{
+    height:100%;
+    margin:0;
+    font-family: "Inter", system-ui, Arial;
+    background: linear-gradient(180deg,#ffeaf2,#ffd6e3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#5a2a3c;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:420px;
+    padding:24px;
+  }
+
+  .card{
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(18px);
+    border-radius:28px;
+    padding:34px 28px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+    text-align:center;
+    position:relative;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:28px;
+    border:2px solid rgba(255,255,255,0.45);
+    pointer-events:none;
+  }
+
+  h2{
+    margin:0;
+    font-size:26px;
+    font-weight:900;
+  }
+
+  .flowers{
+    font-size:22px;
+    margin:12px 0 18px;
+  }
+
+  p{
+    font-size:15px;
+    line-height:1.7;
+    margin:0 0 14px;
+    opacity:0.95;
+  }
+
+  .soft{
+    font-size:14px;
+    opacity:0.85;
+  }
+
+  .sign{
+    margin-top:22px;
+    font-weight:800;
+    font-size:15px;
+  }
+
+  .actions{
+    margin-top:26px;
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    border:none;
+    padding:12px 22px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+  }
+
+  .btn.primary{
+    background: linear-gradient(180deg,#ff6f91,#ff9ab3);
+    color:#fff;
+    box-shadow: 0 12px 28px rgba(255,105,135,0.35);
+  }
+
+  .btn.ghost{
+    background: rgba(255,255,255,0.6);
+    color:#5a2a3c;
+    border:1px solid rgba(255,255,255,0.5);
+  }
+
+  .btn:active{
+    transform: scale(0.96);
+  }
+
+  .footer{
+    margin-top:22px;
+    font-size:12px;
+    opacity:0.75;
+  }
+</style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <h2>That’s all 🌙</h2>
+      <div class="flowers">🌷🌸🌷</div>
+
+      <p>
+        I hope this little space made you smile,
+        even if just for a moment.
+      </p>
+
+      <p>
+        Take this day gently.  
+        Keep what feels warm.  
+        Let go of what feels heavy.
+      </p>
+
+      <p class="soft">
+        Some days don’t need big celebrations —
+        they just need kindness, calm, and a little light ✨
+      </p>
+
+      <div class="sign">
+        — Abhi 💗
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" onclick="restart()">
+          Restart 🔁
+        </button>
+        <button class="btn primary" onclick="sharePage()">
+          Share 📤
+        </button>
+      </div>
+
+      <div class="footer">
+        Made with care 🌸
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  function restart(){
+    location.href = 'index.html';
+  }
+
+  function sharePage(){
+    const url = location.href;
+    if(navigator.share){
+      navigator.share({
+        title: 'A gentle birthday space 🌷',
+        text: 'Something soft and calm — made with care',
+        url: url
+      }).catch(()=>{});
+    } else {
+      navigator.clipboard.writeText(url)
+        .then(()=> alert('Link copied 💗'))
+        .catch(()=> alert('Could not copy link'));
+    }
+  }
+</script>
+</body>
+</html>
