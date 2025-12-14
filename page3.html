@@ -186,16 +186,25 @@
   const player = document.getElementById("player");
   const tracks = document.querySelectorAll(".track");
   const progress = document.querySelector(".progress");
+
   let currentIndex = 0;
+  let hasStarted = false; // ⭐ NEW
 
   function playSong(index){
     currentIndex = index;
     player.src = songs[currentIndex];
     player.play();
+    hasStarted = true;
     highlight();
   }
 
   function togglePlay(){
+    // ⭐ FIX: if user presses play without selecting song
+    if(!hasStarted){
+      playSong(0);
+      return;
+    }
+
     if(player.paused){
       player.play();
     } else {
