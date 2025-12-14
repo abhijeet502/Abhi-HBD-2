@@ -70,6 +70,13 @@
     padding: 14px 16px;
     margin-bottom: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .track.active {
+    background: #ffe4ec;
+    box-shadow: 0 10px 30px rgba(255,120,160,0.35);
   }
 
   .track-title {
@@ -88,6 +95,28 @@
     font-size: 13px;
     color: #999;
     margin-top: 6px;
+  }
+
+  .controls {
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  .play-btn {
+    background: linear-gradient(90deg,#ff8fb1,#ffb6c1);
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255,120,160,0.35);
+  }
+
+  .progress {
+    width: 100%;
+    margin-top: 14px;
   }
 
   .btn {
@@ -119,29 +148,84 @@
 
   <div class="art"></div>
 
-  <div class="track">
-    <div class="track-title">Golden</div>
-    <div class="track-artist">Harry Styles</div>
+  <div class="track" onclick="playSong(0)">
+    <div class="track-title">Golden Hour</div>
+    <div class="track-artist">JVKE</div>
     <div class="track-desc">Light, happy, and full of sunshine energy.</div>
   </div>
 
-  <div class="track">
-    <div class="track-title">Sunday Best</div>
-    <div class="track-artist">Surfaces</div>
-    <div class="track-desc">That peaceful smile-kind of song.</div>
+  <div class="track" onclick="playSong(1)">
+    <div class="track-title">Until I Found You</div>
+    <div class="track-artist">Stephen Sanchez</div>
+    <div class="track-desc">Soft, gentle, and full of warmth.</div>
   </div>
 
-  <div class="track">
-    <div class="track-title">Put Your Records On</div>
-    <div class="track-artist">Corinne Bailey Rae</div>
-    <div class="track-desc">Soft reminder to relax and enjoy the moment.</div>
+  <div class="track" onclick="playSong(2)">
+    <div class="track-title">Teenage Dream</div>
+    <div class="track-artist">Stephen Dawes</div>
+    <div class="track-desc">Feels like nostalgia wrapped in calm happiness.</div>
+  </div>
+
+  <div class="controls">
+    <button class="play-btn" onclick="togglePlay()">Play / Pause 🎵</button>
+    <input type="range" class="progress" value="0" step="1">
   </div>
 
   <button class="btn" onclick="nextPage()">Next 💌</button>
 </div>
 
+<audio id="player"></audio>
+
 <script>
+  const songs = [
+    "assets/audio/golden-hour.mp3",
+    "assets/audio/until-i-found-you.mp3",
+    "assets/audio/teenage-dream.mp3"
+  ];
+
+  const player = document.getElementById("player");
+  const tracks = document.querySelectorAll(".track");
+  const progress = document.querySelector(".progress");
+  let currentIndex = 0;
+
+  function playSong(index){
+    currentIndex = index;
+    player.src = songs[currentIndex];
+    player.play();
+    highlight();
+  }
+
+  function togglePlay(){
+    if(player.paused){
+      player.play();
+    } else {
+      player.pause();
+    }
+  }
+
+  function highlight(){
+    tracks.forEach(t => t.classList.remove("active"));
+    tracks[currentIndex].classList.add("active");
+  }
+
+  player.addEventListener("timeupdate", () => {
+    progress.max = player.duration;
+    progress.value = player.currentTime;
+  });
+
+  progress.addEventListener("input", () => {
+    player.currentTime = progress.value;
+  });
+
+  player.addEventListener("ended", () => {
+    currentIndex++;
+    if(currentIndex < songs.length){
+      playSong(currentIndex);
+    }
+  });
+
   function nextPage(){
+    player.pause();
     location.href = "page4.html";
   }
 </script>
