@@ -13,7 +13,7 @@
   }
 
   body {
-    background: url("assets/bg-music.png") center/cover no-repeat;
+    background: url("assets/images/soft-bg.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,7 +61,7 @@
     width: 180px;
     height: 180px;
     margin: 0 auto 22px;
-    background: url("assets/playlist-cloud.png") center/contain no-repeat;
+    background: url("assets/images/music-cloud.png") center/contain no-repeat;
   }
 
   .track {
@@ -209,7 +209,7 @@
   }
 
   player.addEventListener("timeupdate", () => {
-    progress.max = player.duration;
+    progress.max = player.duration || 0;
     progress.value = player.currentTime;
   });
 
